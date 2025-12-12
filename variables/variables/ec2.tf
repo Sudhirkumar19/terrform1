@@ -1,11 +1,6 @@
 resource "aws_security_group" "allow_ssh_terraform" {
-<<<<<<< HEAD
-    name = "allow_sshh"
-    description = "allow port number 22 for ssh access"
-=======
     name = var.sg_name
     description = var.sg_description
->>>>>>> aa4d266 (terraform ec2 with vars)
 
     egress {
         from_port       = 0
@@ -17,18 +12,6 @@ resource "aws_security_group" "allow_ssh_terraform" {
     }
 
     ingress {
-<<<<<<< HEAD
-        from_port       = 22
-        to_port         = 22
-        protocol        = "tcp"
-        cidr_blocks     = ["0.0.0.0/0"]  # allow everyone to access
-        ipv6_cidr_blocks = ["::/0"]
-    }
-
-    tags = {
-        Name = "allow_ssh_terraform"
-    }
-=======
         from_port       = var.from_port
         to_port         = var.to_port
         protocol        = var.protocol
@@ -37,18 +20,12 @@ resource "aws_security_group" "allow_ssh_terraform" {
     }
 
     tags = var.tags
->>>>>>> aa4d266 (terraform ec2 with vars)
 
 }
 
 resource "aws_instance" "terraform" {
-<<<<<<< HEAD
-    ami           = "ami-09c813fb71547fc4f"
-    instance_type = "t3.micro"
-=======
     ami           = var.ami_id
     instance_type = var.instance_type
->>>>>>> aa4d266 (terraform ec2 with vars)
     vpc_security_group_ids = [aws_security_group.allow_ssh_terraform.id]
 
     tags = {
